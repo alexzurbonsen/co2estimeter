@@ -1,8 +1,10 @@
-// SPDX-FileCopyrightText: Alexander zur Bonsen <alexander.zur.bonsen@tngtech.com>
+// SPDX-FileCopyrightText: Meta Platforms, Inc. and its affiliates
+// SPDX-FileCopyrightText: TNG Technology Consulting GmbH <https://www.tngtech.com>
 //
 // SPDX-License-Identifier: Apache-2.0
+// copied and adapted from https://github.com/opossum-tool/OpossumUIconst
 
-const sharedRules = {
+sharedRules = {
   '@typescript-eslint/array-type': ['error', { default: 'generic' }],
   '@typescript-eslint/await-thenable': 'error',
   '@typescript-eslint/ban-ts-comment': 'error',
@@ -55,21 +57,7 @@ const sharedRules = {
   'no-multi-assign': 'error',
   'no-nested-ternary': 'off',
   'no-new-func': 'error',
-  'no-restricted-imports': [
-    'error',
-    {
-      paths: [
-        {
-          name: '@faker-js/faker',
-          message: 'Please use shared faker instead.',
-        },
-        {
-          name: 'react-hot-toast',
-          message: 'Please use toast from Toaster instead.',
-        },
-      ],
-    },
-  ],
+  'no-restricted-imports': 'error',
   'no-return-assign': 'error',
   'no-return-await': 'error',
   'no-self-compare': 'error',
@@ -119,10 +107,6 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
-    'plugin:testing-library/react',
-    'plugin:jest/recommended',
-    'plugin:jest/style',
-    'plugin:jest-dom/recommended',
     'plugin:@tanstack/eslint-plugin-query/recommended',
   ],
   globals: {
@@ -135,7 +119,7 @@ module.exports = {
       version: 'detect',
     },
   },
-  ignorePatterns: ['.eslintrc.js', 'commitlint.config.ts'],
+  ignorePatterns: ['.eslintrc.js'],
   reportUnusedDisableDirectives: true,
   rules: {
     ...sharedRules,
