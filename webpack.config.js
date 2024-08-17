@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: Alexander zur Bonsen <alexander.zur.bonsen@tngtech.com>
+// SPDX-FileCopyrightText: Copyright (c) Abhijith Vijayan <email@abhijithvijayan.in> (https://abhijithvijayan.in)
+//
+// SPDX-License-Identifier: MIT AND Apache-2.0
 const {
   WebextensionPlugin,
 } = require('@webextension-toolbox/webpack-webextension-plugin');
