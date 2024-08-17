@@ -1,0 +1,17 @@
+# Node
+**/.DS_Store
+**/.Rhistory
+**/node_modules
+
+# pnpm
+pnpm-lock.yaml
+
+# Builds
+extension
+CHANGELOG.md
+
+# IDEs
+.vscode
+**/.idea
+**/coverage
+*.iml
