@@ -38,8 +38,6 @@ sharedRules = {
     { allowBoolean: true, allowNumber: true, allowNever: true },
   ],
   '@typescript-eslint/switch-exhaustiveness-check': 'error',
-  'jest/consistent-test-it': 'error',
-  'jest/prefer-spy-on': 'error',
   'filenames/match-regex': [
     'error',
     '^[a-zA-Z0-9\\-]+(.d|.test|.style|.util|.util.test)?$',
