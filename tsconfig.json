@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    // "allowJs": true, // not enabling this for now, not sure I will need imports of .js files
+    "target": "es6",
+    "lib": ["ES2017", "dom"],
+    "module": "es6", // https://www.typescriptlang.org/tsconfig/#module
+    "moduleResolution": "bundler", // not sure this is a wise choice, since I am not targeting a bundler currently, but the docs are confusing https://www.typescriptlang.org/docs/handbook/modules/theory.html#module-resolution
+    "isolatedModules": true, // warn if you write certain code that can’t be correctly interpreted by a single-file transpilation process https://www.typescriptlang.org/tsconfig/#isolatedModules
+    "esModuleInterop": true, // not sure I need this https://www.typescriptlang.org/tsconfig/#esModuleInterop
+    "allowSyntheticDefaultImports": true, // https://www.typescriptlang.org/tsconfig/#allowSyntheticDefaultImports
+    "forceConsistentCasingInFileNames": true, // imported files are forced to have same casing as file on disk
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "resolveJsonModule": true, // allow import of json modules
+    "sourceMap": true,
+    "strict": true,
+    "jsx": "react-jsx",
+    "outDir": "extension", // consumed by webpack
+    "rootDir": "src" // consumed by webpack
+  },
+  "include": ["src/**/*", "typings"]
+}
