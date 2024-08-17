@@ -6,7 +6,7 @@
 
   "manifest_version": 3,
 
-  "permissions": ["webRequest", "storage"],
+  "permissions": ["tabs", "storage"],
 
   // sets an add-on ID
   "browser_specific_settings": {
