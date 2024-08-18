@@ -1,13 +1,13 @@
 {
-  "name": "deskly-agent",
+  "name": "co2estimeter",
   "version": "0.0.0",
-  "description": "Web extension for llm agent supported deskly bookings",
+  "description": "Web extension for estimating the CO2 emissions of browsing activity",
   "private": true,
   "repository": "",
   "author": {
     "name": "Alexander zur Bonsen",
     "email": "alexander.zur.bonsen@tngtech.com",
-    "url": "https://"
+    "url": "https://github.com/alexzurbonsen/co2estimeter"
   },
   "license": "Apache-2.0",
   "engines": {
