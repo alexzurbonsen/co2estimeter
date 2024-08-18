@@ -25,20 +25,25 @@ async function main() {
     handlePageLifecycle(pageWeightObserver, pageWeight);
   }
 
-  Browser.storage.onChanged.addListener((changes: Record<string, Browser.Storage.StorageChange>, areaName: string) => {
-    if (areaName === 'local' && STORAGE_KEYS.MONITORING_ACTIVE in changes) {
-      monitoringActive = changes[STORAGE_KEYS.MONITORING_ACTIVE].newValue;
-      if (monitoringActive) {
-        pageWeightObserver.observe({
-          entryTypes: ['resource', 'navigation'],
-        });
-        console.log(`| ${LOGGER_PREFIX} | monitoring active`);
-        handlePageLifecycle(pageWeightObserver, pageWeight);
-      } else {
-        pageWeightObserver.disconnect();
+  Browser.storage.onChanged.addListener(
+    (
+      changes: Record<string, Browser.Storage.StorageChange>,
+      areaName: string,
+    ) => {
+      if (areaName === 'local' && STORAGE_KEYS.MONITORING_ACTIVE in changes) {
+        monitoringActive = changes[STORAGE_KEYS.MONITORING_ACTIVE].newValue;
+        if (monitoringActive) {
+          pageWeightObserver.observe({
+            entryTypes: ['resource', 'navigation'],
+          });
+          console.log(`| ${LOGGER_PREFIX} | monitoring active`);
+          handlePageLifecycle(pageWeightObserver, pageWeight);
+        } else {
+          pageWeightObserver.disconnect();
+        }
       }
-    }
-  });
+    },
+  );
 }
 
 // proper cleanup is difficult, because from my tests in firefox
@@ -65,7 +70,9 @@ function handlePageLifecycle(
       console.log(`| ${LOGGER_PREFIX} | page will be terminated`);
       cleanUpWhenTerminated('TO_TERMINATED');
     } else {
-      console.log(`| ${LOGGER_PREFIX} | page is hidden (visibilitychange event without pagehide event)`);
+      console.log(
+        `| ${LOGGER_PREFIX} | page is hidden (visibilitychange event without pagehide event)`,
+      );
     }
     pagePersisted = undefined;
   }
@@ -79,9 +86,7 @@ function handlePageLifecycle(
     visibilitychangePath: 'TO_TERMINATED' | 'TO_CACHE' | 'TO_HIDDEN',
   ): void {
     pageWeight.reset();
-    if ( 
-      visibilitychangePath === 'TO_TERMINATED'
-    ) {
+    if (visibilitychangePath === 'TO_TERMINATED') {
       oberserver.disconnect();
       setTimeout(() => {
         window.removeEventListener('pagehide', handlePagehideEvent, {
@@ -103,7 +108,10 @@ function handlePageLifecycle(
 }
 
 main().catch((error) => {
-  console.error(`| ${LOGGER_PREFIX} | CONTENT SCRIPT main raised an error: `, error);
+  console.error(
+    `| ${LOGGER_PREFIX} | CONTENT SCRIPT main raised an error: `,
+    error,
+  );
 });
 
 // TODOs

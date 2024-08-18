@@ -143,7 +143,13 @@ export function ResultsTab({
       fetchAndProcessData();
     }, RE_FETCH_INTERVAL);
     return () => clearInterval(interval);
-  }, [reset, greenHostingFactor, deviceGridIntensity, dataCenterGridIntensity, networkGridIntensity]);
+  }, [
+    reset,
+    greenHostingFactor,
+    deviceGridIntensity,
+    dataCenterGridIntensity,
+    networkGridIntensity,
+  ]);
 
   return (
     <>

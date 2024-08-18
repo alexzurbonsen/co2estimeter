@@ -4,8 +4,8 @@
 import Browser from 'webextension-polyfill';
 
 import { STORAGE_KEYS } from '../constants/constants';
-import { MessageHandlerBackground } from './messageHandlerBackground';
 import { StorageBuffer } from '../storage/storageBuffer';
+import { MessageHandlerBackground } from './messageHandlerBackground';
 
 function main() {
   const transferSizeStorage = new StorageBuffer(
