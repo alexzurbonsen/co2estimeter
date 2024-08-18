@@ -1,4 +1,3 @@
-
 // SPDX-FileCopyrightText: Alexander zur Bonsen <alexander.zur.bonsen@tngtech.com>
 //
 // SPDX-License-Identifier: Apache-2.0

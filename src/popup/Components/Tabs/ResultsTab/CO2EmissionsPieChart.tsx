@@ -39,7 +39,7 @@ export function CO2EmissionsPieChart({ data }: PieChartProps) {
   );
 }
 
-function PieChartTooltip({ datum }: {datum: ComputedDatum<PieChartDatum>}) {
+function PieChartTooltip({ datum }: { datum: ComputedDatum<PieChartDatum> }) {
   return (
     <Paper>
       <Box
