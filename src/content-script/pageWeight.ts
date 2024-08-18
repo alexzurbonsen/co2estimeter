@@ -1,7 +1,6 @@
 // SPDX-FileCopyrightText: Alexander zur Bonsen <alexander.zur.bonsen@tngtech.com>
 //
 // SPDX-License-Identifier: Apache-2.0
-
 import Browser from 'webextension-polyfill';
 
 import { LOGGER_PREFIX } from '../constants/constants';

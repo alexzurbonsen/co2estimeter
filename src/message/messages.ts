@@ -33,18 +33,28 @@ export class MessengerContentScript {
 }
 
 export class MessengerBackgroundScript {
-  static isTransferSizeMessage(
-    message: any,
-  ): message is {
+  static isTransferSizeMessage(message: any): message is {
     t: MessagesToBackgroundTypes.TRANSFER_SIZE;
     c: TransferSize;
   } {
-    return validateMessage(message, MessagesToBackgroundTypes.TRANSFER_SIZE, 'number');
+    return validateMessage(
+      message,
+      MessagesToBackgroundTypes.TRANSFER_SIZE,
+      'number',
+    );
   }
 }
 
-function validateMessage(message: any, type: KeyedType<Message, 't'>, contentType: 'number' | 'boolean'): boolean {
-  if (!(Object.keys(message).length === 2) || !('t' in message) || !('c' in message)) {
+function validateMessage(
+  message: any,
+  type: KeyedType<Message, 't'>,
+  contentType: 'number' | 'boolean',
+): boolean {
+  if (
+    !(Object.keys(message).length === 2) ||
+    !('t' in message) ||
+    !('c' in message)
+  ) {
     return false;
   } else {
     if (message.t === type && typeof message.c === contentType) {

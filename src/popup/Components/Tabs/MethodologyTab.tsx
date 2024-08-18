@@ -11,40 +11,57 @@ export function MethodologyTab() {
   return (
     <Paper elevation={0} sx={{ maxHeight: '380px', overflow: 'auto' }}>
       <Typography variant="h6">
-        How are CO<sub>2</sub> emissions for browsing activity calculated?
+        How are CO<sub>2</sub>e emissions for browsing activity calculated?
       </Typography>
       <Typography variant="body2" sx={{ marginTop: 1 }}>
-        Before a webpage is displayed in your browser window the data has to be
-        transmitted from a server, that is typically somewhere in a data center,
-        to your device. The path the data takes, leads through various
-        intermediate stations, until it is received by your device. The server
-        processing your request, sending the data over the network and
-        processing it on your device involves energy costs.
-        <br />
-        There are many variables along the path of your requested packets that
-        determine the energy consumption. How is it possible to estimate the
-        energy consumption and CO<sub>2</sub> emissions of such a convoluted and
-        variable process? Well, it is not. But you can take a qualified guess.
-        You can break down the complexity by just looking at the number of bytes
-        that are transferred over the wire (and air) to your device. By
-        analysing the energy usage of different segments of the internet that
-        are involved in the data processing and transfer you can get estimates
-        for the average energy consumption per transferred byte. From these
-        energy consumption estimates you compute the CO<sub>2</sub>e emissions
-        by multiplying with the grid carbon intensity. That is the amount of CO
-        <sub>2</sub>e emitted per kWh of electricity produced.
-        <br />
-        This is what the{' '}
+        {text.name} uses the{' '}
         <Link
           href={
             'https://sustainablewebdesign.org/estimating-digital-emissions/'
           }
         >
-          <strong>Sustainable Webdesign Model</strong>
+          <strong>Sustainable Webdesign Model v4</strong>
         </Link>{' '}
-        (SWD) does, whose v4 is used by {text.name}. The SWD includes three
-        segments: data centers, network and user devices. Further details of the
-        model can be found under the linked page. It also includes an{' '}
+        (SWD) to calculate the CO<sub>2</sub>e value of green house gas
+        emissions associated with browsing activity. For the actual caluclation{' '}
+        the{' '}
+        <Link href="https://developers.thegreenwebfoundation.org/co2js/overview/">
+          co2.js library
+        </Link>{' '}
+        from the{' '}
+        <Link href="https://www.thegreenwebfoundation.org/">
+          Green Web Foundation
+        </Link>{' '}
+        is used.
+        <br />
+        How does the SWD model work? This following section provides a short
+        summary. The full picture can be found{' '}
+        <Link
+          href={
+            'https://sustainablewebdesign.org/estimating-digital-emissions/'
+          }
+        >
+          here
+        </Link>{' '}
+        .
+        <br />
+        There are many variables along the path of the packets you requested to
+        load a webpage that contribute to energy consumption you the page load.
+        Taking into a account all these variables to get an estimate of the
+        involved emissions, is unfeasible, may be also impossible. The SWD model
+        thus breaks down this complexity by focussing on the number of bytes
+        that are transferred over the wire (and air) to your device. The model
+        uses data on the average energy consumption of three segments of the
+        internet, data centers, network and user devices, to provide estimates
+        for the average energy consumption per transferred byte. With these
+        values it computes the estimated energy that is necessary to get, send
+        and process the bytes to your device. Finally, the energy values are
+        multiplied by the grid carbon intensity to get an green house gas
+        emissions estimate in CO
+        <sub>2</sub>e. The grid carbon intensity is the amount of CO<sub>2</sub>
+        e emitted per kWh of electricity produced.
+        <br />
+        If you want to know more about the modelling choices, there is also this
         <Link
           href={
             'https://www.wholegraindigital.com/blog/website-energy-consumption/'
@@ -52,22 +69,22 @@ export function MethodologyTab() {
         >
           intersting article about the variance in estimates of CO<sub>2</sub>e
           emissions for internet activity
-        </Link>
-        .
+        </Link>{' '}
         <br />
-        You can configure the model to use different grid intensities for
-        different segments of the data processing and transfer. You can also
-        play around with an estimated green hosting percentage. In the context
-        of the {text.name}, this is the percentage of data centers running on
-        renewable or zero-carbon energy.
+        The SWD model comes with a couple of knobs. You can use different grid
+        intensities for the different segments. You can also play around with an
+        estimated green hosting percentage. In the context of the {text.name},
+        this is the percentage of data centers running on renewable or
+        zero-carbon energy.
         <br />
         Of course, the approach has limitations. It does not take into account
-        the energy consumption of the server that processes your request. Taken
-        to an extreme, if your request makes a server work for one hour until it
-        sends you a short message back, the actual energy consumption of your
-        request would be vastly underestimated. Also the distance that the
-        requested data is travelling through the network does not have an effect
-        on estimates.
+        the energy consumption of the server that processes your request for
+        example. Taken to an extreme, if your request causes a server work to do
+        some heavy work for a whole day but it only sends back a short message
+        once it is finished, the estimated energy consumption of your request
+        would just reflect the length of the short message, not the work the
+        server has done. Also the distance that the requested data has covered
+        on the way to your device does not have an effect on the estimates.
       </Typography>
       <Typography variant="h6" sx={{ marginTop: 2 }}>
         How does {text.name} collect the necessary data and store it?
