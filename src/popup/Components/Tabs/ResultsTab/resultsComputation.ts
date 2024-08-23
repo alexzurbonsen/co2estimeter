@@ -6,6 +6,7 @@ import { co2 } from '@tgwf/co2';
 import { Bananas, Chocolate, Coffee, Distance } from 'grasp';
 
 import { colors } from './colors';
+import { CO2jsOptions } from './ResultsTab';
 
 export type PieChartDatumBase = {
   id: string;
@@ -26,10 +27,6 @@ export type ProcessedStats = {
   comparisonCoffee: ComparisonCoffee;
   comparisonDistance: ComparisonDistance;
 };
-
-export interface CO2jsOptions {
-  greenHostingFactor: number;
-}
 
 export type ComparisonBananas = {
   bananas: number;
@@ -73,10 +70,10 @@ export async function processDomainStats(
   domainStats: Record<string, Record<string, number>>,
   co2jsOptions: CO2jsOptions,
 ): Promise<ProcessedStats> {
+  const swd = new co2({ model: 'swd', version: 4, results: 'segment' });
+  
   const pieChartDataUnsorted: PieChartDatumBase[] = [];
   let transferSizeTotalBytes = 0;
-  const swd = new co2({ model: 'swd', version: 4, results: 'segment' });
-
   for (const [domain, stats] of Object.entries(domainStats)) {
     const co2eDomain = swd.perByteTrace(
       stats['transferSize'],
@@ -92,6 +89,7 @@ export async function processDomainStats(
     });
     transferSizeTotalBytes += stats['transferSize'];
   }
+  
   const pieChartData = getSortedDataWithColors(pieChartDataUnsorted);
 
   const co2eResult = swd.perByteTrace(

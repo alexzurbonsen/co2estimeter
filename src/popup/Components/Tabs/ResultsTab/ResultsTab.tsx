@@ -27,7 +27,7 @@ import {
 
 type GridIntensityArg = number | { value: string };
 
-type Co2jsOptions = {
+export type CO2jsOptions = {
   greenHostingFactor: number;
   gridIntensities: {
     device: GridIntensityArg | null;
@@ -95,7 +95,7 @@ export function ResultsTab({
         return;
       }
 
-      const co2jsOptions: Co2jsOptions = {
+      const co2jsOptions: CO2jsOptions = {
         greenHostingFactor: greenHostingFactor,
         gridIntensities: {
           device: convertToGridIntensityArg(deviceGridIntensity),
