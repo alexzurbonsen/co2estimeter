@@ -37,6 +37,7 @@ export type CO2jsOptions = {
 };
 
 interface ResultsTabProps {
+  pieChartCutoff: number;
   greenHostingFactor: number;
   deviceGridIntensity: GridIntensityInput | null;
   dataCenterGridIntensity: GridIntensityInput | null;
@@ -68,6 +69,7 @@ const initialDistance: ComparisonDistance = {
 };
 
 export function ResultsTab({
+  pieChartCutoff,
   greenHostingFactor,
   deviceGridIntensity,
   dataCenterGridIntensity,
@@ -113,7 +115,7 @@ export function ResultsTab({
         // comparisonChocolate,
         comparisonCoffee,
         comparisonDistance,
-      } = await processDomainStats(domainStats, co2jsOptions);
+      } = await processDomainStats(domainStats, co2jsOptions, pieChartCutoff);
       setPieChartData(pieChartData);
       setTransferSizeTotalMB(transferSizeTotalMB);
       setTotalEnergykWh(totalEnergykWh);
@@ -149,6 +151,7 @@ export function ResultsTab({
     deviceGridIntensity,
     dataCenterGridIntensity,
     networkGridIntensity,
+    pieChartCutoff,
   ]);
 
   return (
