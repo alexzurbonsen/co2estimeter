@@ -19,6 +19,8 @@ interface MainPanelProps {
   reset: boolean;
   setReset: (value: boolean) => void;
   aboutVisible: boolean;
+  pieChartCutoff: number;
+  setPieChartCutoff: (value: number) => void;
   configGreenHostingFactor: number;
   setConfigGreenHostingFactor: (value: number) => void;
   configDeviceGridIntensity: GridIntensityInput | null;
@@ -34,6 +36,8 @@ export function MainPanel({
   reset,
   setReset,
   aboutVisible,
+  pieChartCutoff,
+  setPieChartCutoff,
   configGreenHostingFactor: configGreenHostingFactor,
   setConfigGreenHostingFactor,
   configDeviceGridIntensity,
@@ -73,6 +77,7 @@ export function MainPanel({
               reset={reset}
               setReset={setReset}
               monitoringActive={monitoringActive}
+              pieChartCutoff={pieChartCutoff}
               greenHostingFactor={configGreenHostingFactor}
               deviceGridIntensity={configDeviceGridIntensity}
               dataCenterGridIntensity={configDataCenterGridIntensity}
@@ -81,6 +86,8 @@ export function MainPanel({
           </TabPanel>
           <TabPanel currentTab={currentTab} index={1}>
             <ConfigurationTab
+              pieChartCutoff={pieChartCutoff}
+              setPieChartCutoff={setPieChartCutoff}
               greenHostingFactor={configGreenHostingFactor}
               setGreenHostingFactor={setConfigGreenHostingFactor}
               deviceGridIntensity={configDeviceGridIntensity}
@@ -96,43 +103,40 @@ export function MainPanel({
           </TabPanel>
         </Box>
       ) : (
-        <Box sx={{ width: '100%', maxHeight: '472px', overflow: 'hidden' }}>
-          <Typography
-            variant="h6"
-            sx={{ paddingX: '20px', paddingTop: '20px' }}
-          >
-            About
-          </Typography>
-          <Typography
-            variant="body2"
-            sx={{ paddingX: '20px', paddingTop: '10px' }}
-          >
-            {text.name} is published under the{' '}
-            <Link href="https://github.com/alexzurbonsen/co2estimeter/blob/main/LICENSE">
-              Apache-2.0 license
-            </Link>
-            .
-          </Typography>
-          <Typography
-            variant="body2"
-            sx={{ paddingX: '20px', paddingTop: '10px' }}
-          >
-            The source code is available on GitHub. Contributions are welcome!
-            If you find a bug or have a feature request, feel free to open an
-            issue or pull request.
-          </Typography>
-          <Typography
-            sx={{ paddingX: '20px', paddingTop: '10px', paddingBottom: '20px' }}
-          >
-            <IconButton
-              href="https://github.com/alexzurbonsen/co2estimeter"
-              sx={{ color: 'black' }}
-            >
-              <GitHubIcon />
-            </IconButton>
-          </Typography>
-        </Box>
+        renderAboutPage()
       )}
     </>
+  );
+}
+
+function renderAboutPage() {
+  return (
+    <Box sx={{ width: '100%', maxHeight: '472px', overflow: 'hidden' }}>
+      <Typography variant="h6" sx={{ paddingX: '20px', paddingTop: '20px' }}>
+        About
+      </Typography>
+      <Typography variant="body2" sx={{ paddingX: '20px', paddingTop: '10px' }}>
+        {text.name} is published under the{' '}
+        <Link href="https://github.com/alexzurbonsen/co2estimeter/blob/main/LICENSE">
+          Apache-2.0 license
+        </Link>
+        .
+      </Typography>
+      <Typography variant="body2" sx={{ paddingX: '20px', paddingTop: '10px' }}>
+        The source code is available on GitHub. Contributions are welcome! If
+        you find a bug or have a feature request, feel free to open an issue or
+        pull request.
+      </Typography>
+      <Typography
+        sx={{ paddingX: '20px', paddingTop: '10px', paddingBottom: '20px' }}
+      >
+        <IconButton
+          href="https://github.com/alexzurbonsen/co2estimeter"
+          sx={{ color: 'black' }}
+        >
+          <GitHubIcon />
+        </IconButton>
+      </Typography>
+    </Box>
   );
 }

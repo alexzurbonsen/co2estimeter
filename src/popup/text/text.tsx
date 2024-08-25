@@ -46,6 +46,7 @@ const text = {
     ),
     inputDefault: 'Grid intensity or country',
     network: 'Network',
+    pieChartCutoff: (cutoff: number) => `Show top ${cutoff} domains`,
     title: (
       <span>
         Configuration options for CO<sub>2</sub>e estimation
@@ -79,6 +80,12 @@ const text = {
       </span>
     ),
     pauseMonitoring: 'Pause monitoring',
+    pieChartCutoff: (
+      <span>
+        Set a cutoff value for the pie chart. All domains below the cutoff are
+        categorized into "other". Sorted by CO<sub>2</sub>e
+      </span>
+    ),
     resetData: 'Reset. Deletes all collected browsing data.',
     startMonitoring: 'Start monitoring',
     transferSize: (
