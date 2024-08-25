@@ -69,6 +69,7 @@ const SWDV4 = {
 export async function processDomainStats(
   domainStats: Record<string, Record<string, number>>,
   co2jsOptions: CO2jsOptions,
+  pieChartCutoff: number,
 ): Promise<ProcessedStats> {
   const swd = new co2({ model: 'swd', version: 4, results: 'segment' });
 
@@ -90,7 +91,10 @@ export async function processDomainStats(
     transferSizeTotalBytes += stats['transferSize'];
   }
 
-  const pieChartData = getSortedDataWithColors(pieChartDataUnsorted);
+  const pieChartData = getSortedDataWithColors(
+    pieChartDataUnsorted,
+    pieChartCutoff,
+  );
 
   const co2eResult = swd.perByteTrace(
     transferSizeTotalBytes,
@@ -143,13 +147,14 @@ export async function processDomainStats(
 
 function getSortedDataWithColors(
   pieChartData: PieChartDatumBase[],
+  pieChartCutoff: number,
 ): PieChartDatum[] {
   const sortedData = pieChartData.sort((a, b) => b.value - a.value); // sort in ascending order
-  if (sortedData.length > colors.length) {
-    const other = sortedData.slice(colors.length - 1);
+  if (sortedData.length > pieChartCutoff) {
+    const other = sortedData.slice(pieChartCutoff);
     const otherTotal = other.reduce((acc, cur) => acc + cur.value, 0);
-    sortedData.splice(colors.length - 1);
-    sortedData.push({ id: 'other', value: otherTotal });
+    sortedData.splice(pieChartCutoff);
+    sortedData.push({ id: 'other', value: roundNumber(otherTotal, 2) });
   }
   return sortedData.map((datum, idx) => {
     const color = colors[idx];

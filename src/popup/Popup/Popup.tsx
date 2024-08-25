@@ -20,6 +20,7 @@ export function Popup() {
     null,
   );
   const [reset, setReset] = useState(false);
+  const [configPieChartCutoff, setConfigPieChartCutoff] = useState(10);
   const [configGreenHostingInitialized, setConfigGreenHostingInitialized] =
     useState(false);
   const [
@@ -141,6 +142,8 @@ export function Popup() {
               reset={reset}
               setReset={setReset}
               aboutVisible={aboutVisible}
+              pieChartCutoff={configPieChartCutoff}
+              setPieChartCutoff={setConfigPieChartCutoff}
               configGreenHostingFactor={configGreenHostingFactor}
               setConfigGreenHostingFactor={setConfigGreenHostingFactor}
               configDeviceGridIntensity={configDeviceGridIntensity}
