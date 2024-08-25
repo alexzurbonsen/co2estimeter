@@ -4,24 +4,18 @@
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
-import Tab from '@mui/material/Tab';
-import Tabs from '@mui/material/Tabs';
 import { useEffect, useState } from 'react';
 import Browser from 'webextension-polyfill';
 
 import { STORAGE_KEYS } from '../../constants/constants';
 import Background from '../Components/Background';
-import { TabPanel } from '../Components/TabPanel';
-import { ConfigurationTab } from '../Components/Tabs/ConfigurationTab/ConfigurationTab';
+import { MainPanel } from '../Components/MainPanel';
 import { GridIntensityInput } from '../Components/Tabs/ConfigurationTab/SegmentGridIntensityConfig';
-import { MethodologyTab } from '../Components/Tabs/MethodologyTab';
-import { ResultsTab } from '../Components/Tabs/ResultsTab/ResultsTab';
 import TopBar from '../Components/TopBar';
 
 export function Popup() {
   const width = 500;
   const height = 580;
-  const [currentTab, setTab] = useState(0);
   const [monitoringActive, setMonitoringActive] = useState<boolean | null>(
     null,
   );
@@ -39,6 +33,7 @@ export function Popup() {
     useState<GridIntensityInput | null>(null);
   const [configNetworkGridIntensity, setConfigNetworkGridIntensity] =
     useState<GridIntensityInput | null>(null);
+  const [aboutVisible, setAboutVisible] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -126,13 +121,6 @@ export function Popup() {
     setConfigGridIntensitiesInitialized,
   ]);
 
-  const handleTabChange = (
-    _event: React.SyntheticEvent,
-    newTabValue: number,
-  ) => {
-    setTab(newTabValue);
-  };
-
   return (
     <>
       <div className="container">
@@ -148,46 +136,22 @@ export function Popup() {
             setReset={setReset}
           />
           <Paper elevation={2} sx={{ borderRadius: '14px' }}>
-            <Box sx={{ width: '100%', maxHeight: '472px', overflow: 'hidden' }}>
-              <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                <Tabs
-                  value={currentTab}
-                  onChange={handleTabChange}
-                  variant="fullWidth"
-                  textColor="secondary"
-                >
-                  <Tab label="Results" id="0" />
-                  <Tab label="Configuration" id="1" />
-                  <Tab label="Methodology" id="2" />
-                </Tabs>
-              </Box>
-              <TabPanel currentTab={currentTab} index={0}>
-                <ResultsTab
-                  greenHostingFactor={configGreenHostingFactor}
-                  deviceGridIntensity={configDeviceGridIntensity}
-                  dataCenterGridIntensity={configDataCenterGridIntensity}
-                  networkGridIntensity={configNetworkGridIntensity}
-                  reset={reset}
-                  setReset={setReset}
-                  monitoringActive={monitoringActive}
-                />
-              </TabPanel>
-              <TabPanel currentTab={currentTab} index={1}>
-                <ConfigurationTab
-                  greenHostingFactor={configGreenHostingFactor}
-                  setGreenHostingFactor={setConfigGreenHostingFactor}
-                  deviceGridIntensity={configDeviceGridIntensity}
-                  setDeviceGridIntensity={setConfigDeviceGridIntensity}
-                  dataCenterGridIntensity={configDataCenterGridIntensity}
-                  setDataCenterGridIntensity={setConfigDataCenterGridIntensity}
-                  networkGridIntensity={configNetworkGridIntensity}
-                  setNetworkGridIntensity={setConfigNetworkGridIntensity}
-                />
-              </TabPanel>
-              <TabPanel currentTab={currentTab} index={2}>
-                <MethodologyTab />
-              </TabPanel>
-            </Box>
+            <MainPanel
+              monitoringActive={monitoringActive}
+              reset={reset}
+              setReset={setReset}
+              aboutVisible={aboutVisible}
+              configGreenHostingFactor={configGreenHostingFactor}
+              setConfigGreenHostingFactor={setConfigGreenHostingFactor}
+              configDeviceGridIntensity={configDeviceGridIntensity}
+              setConfigDeviceGridIntensity={setConfigDeviceGridIntensity}
+              configDataCenterGridIntensity={configDataCenterGridIntensity}
+              setConfigDataCenterGridIntensity={
+                setConfigDataCenterGridIntensity
+              }
+              configNetworkGridIntensity={configNetworkGridIntensity}
+              setConfigNetworkGridIntensity={setConfigNetworkGridIntensity}
+            />
           </Paper>
           <Box
             sx={{
@@ -198,8 +162,11 @@ export function Popup() {
               marginTop: '5px',
             }}
           >
-            <Link variant="caption" href="#">
-              About
+            <Link
+              variant="caption"
+              onClick={() => setAboutVisible(!aboutVisible)}
+            >
+              {aboutVisible ? 'Close' : 'About'}
             </Link>
           </Box>
         </Box>

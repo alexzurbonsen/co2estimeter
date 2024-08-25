@@ -71,7 +71,7 @@ export async function processDomainStats(
   co2jsOptions: CO2jsOptions,
 ): Promise<ProcessedStats> {
   const swd = new co2({ model: 'swd', version: 4, results: 'segment' });
-  
+
   const pieChartDataUnsorted: PieChartDatumBase[] = [];
   let transferSizeTotalBytes = 0;
   for (const [domain, stats] of Object.entries(domainStats)) {
@@ -89,7 +89,7 @@ export async function processDomainStats(
     });
     transferSizeTotalBytes += stats['transferSize'];
   }
-  
+
   const pieChartData = getSortedDataWithColors(pieChartDataUnsorted);
 
   const co2eResult = swd.perByteTrace(
