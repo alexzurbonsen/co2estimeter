@@ -74,9 +74,10 @@ const text = {
     gridIntensities: (
       <span>
         The grid intensity is the amount of CO<sub>2</sub>e emitted per kWh of
-        electricity produced. It can be configured for the different segments
-        that are included in the SWD v4 model. If no value is provided the
-        model's default value of the global grid intensity is used (494 g/kWh).
+        electricity produced. It can be configured for the different segments of
+        the SWD v4 model. If no value is provided, the model's default for the
+        global grid intensity is used (494 g/kWh). Grid intensities shown, are
+        from the co2.js library.
       </span>
     ),
     pauseMonitoring: 'Pause monitoring',

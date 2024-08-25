@@ -34,7 +34,7 @@ export function SegmentGridIntensityConfig({
   );
   const [isValidInput, setIsValidInput] = useState(true);
   const [inputValue, setInputValue] = useState<string | undefined>('');
-  const [validInputValue, setValidInputValue] = useState<string | undefined>(
+  const [validatedInputValue, setValidatedInputValue] = useState<string | undefined>(
     '',
   );
 
@@ -57,13 +57,13 @@ export function SegmentGridIntensityConfig({
         setSegmentGridIntensity(value);
         return;
       }
-      if (validInputValue !== undefined && validInputValue !== '') {
-        const parsedNumber = parseFloat(validInputValue);
+      if (validatedInputValue !== undefined && validatedInputValue !== '') {
+        const parsedNumber = parseFloat(validatedInputValue);
         if (isNaN(parsedNumber)) {
           const countryCode = COUNTRY_CODE_OPTIONS.find((countryCode) => {
             return (
               countryCode.country.toLowerCase() ===
-              validInputValue.toLowerCase()
+              validatedInputValue.toLowerCase()
             );
           });
           if (countryCode) {
@@ -83,7 +83,7 @@ export function SegmentGridIntensityConfig({
       return;
     }, SET_CONFIG_DEBOUNCE_INTERVAL);
     return () => clearTimeout(timeoutId);
-  }, [value, validInputValue, setSegmentGridIntensity]);
+  }, [value, validatedInputValue, setSegmentGridIntensity]);
 
   // debounced validation of inputValue
   useEffect(() => {
@@ -91,14 +91,14 @@ export function SegmentGridIntensityConfig({
       const isValid = validateInput(inputValue);
       setIsValidInput(isValid);
       if (isValid) {
-        setValidInputValue(inputValue);
+        setValidatedInputValue(inputValue);
       } else {
-        setValidInputValue(undefined);
+        setValidatedInputValue(undefined);
         setValue(null);
       }
     }, 500);
     return () => clearTimeout(timeoutId);
-  }, [inputValue, setIsValidInput, setValidInputValue, setValue]);
+  }, [inputValue, setIsValidInput, setValidatedInputValue, setValue]);
 
   const validateInput = (newValue: string | undefined): boolean => {
     if (newValue === undefined || newValue === '') {
@@ -106,7 +106,10 @@ export function SegmentGridIntensityConfig({
     }
     if (
       COUNTRY_CODE_OPTIONS.find((countryCode) => {
-        return countryCode.country.toLowerCase() === newValue.toLowerCase();
+        return (
+          countryCode.country.toLowerCase() ===
+          newValue.split(' (')[0].toLowerCase()
+        );
       })
     ) {
       return true;
@@ -144,7 +147,7 @@ export function SegmentGridIntensityConfig({
             if (typeof option === 'number') {
               return option.toString();
             }
-            return option.country;
+            return `${option.country} (${option.gridIntensity})`;
           }}
           value={value}
           onChange={(
