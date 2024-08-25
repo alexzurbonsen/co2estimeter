@@ -45,8 +45,8 @@ module.exports = (env) => {
     context: sourcePath,
     entry: {
       background: path.join(sourcePath, 'background-script', 'main.ts'),
-      content: path.join(sourcePath, 'content-script', 'getTransferSize.ts'),
-      popup: path.join(sourcePath, 'popup', 'main.tsx'),
+      content: path.join(sourcePath, 'content-script', 'main.ts'),
+      popup: path.join(sourcePath, 'popup', 'index.tsx'),
       // options: path.join(sourcePath, 'options', 'index.tsx'),
     },
     output: {
