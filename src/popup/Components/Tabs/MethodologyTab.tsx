@@ -90,9 +90,9 @@ export function MethodologyTab() {
         How does {text.name} collect the necessary data and store it?
       </Typography>
       <Typography variant="body2" sx={{ marginTop: 1 }}>
-        This extension leverages an API that is available in the browser, called
-        the Performance API. It can continuously observe network requests and
-        provide performance data about them. This also includes the so called{' '}
+        This extension leverages the Performance API that is available in
+        browsers. It can continuously observe network requests and provide
+        performance data about them. This also includes the so called{' '}
         <Link
           href={
             'https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/transferSize'
@@ -101,18 +101,19 @@ export function MethodologyTab() {
           transfer size
         </Link>
         . That is the size of the response as it is sent over the network to
-        your device (as oposed to the decoded or decompressed size of the
+        your device (as opposed to the decoded or decompressed size of the
         resource).
         <br />
         It is zero if the data was obtained from local cache or a CORS request.
         The size of requests is not tracked. If you are looking for an overview
-        of how this can be used, check out{' '}
+        of how the Performance API can be used, check out{' '}
         <Link
           href={
             'https://fershad.com/writing/including-user-interaction-in-website-carbon-estimates/'
           }
         >
-          this blog
+          this blog or Mozilla's docs{' '}
+          <Link href="https://developer.mozilla.org/en-US/docs/Web/API/Performance"></Link>
         </Link>
         .
         <br />
@@ -122,9 +123,10 @@ export function MethodologyTab() {
         by pressing the "Reset" button of {text.name} in the top bar.
         <br />
         The comparisons of the estimated CO<sub>2</sub>e emissions are done with
-        functions from the grasp package. For further information on its data
-        check out{' '}
-        <Link href={'https://github.com/hoernschen/grasp/wiki'}>this page</Link>
+        functions from the{' '}
+        <Link href={'https://github.com/hoernschen/grasp'}>grasp</Link> package.
+        For further information on its data check out its{' '}
+        <Link href={'https://github.com/hoernschen/grasp/wiki'}>wiki page</Link>
         .
       </Typography>
     </Paper>
