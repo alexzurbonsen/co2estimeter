@@ -25,7 +25,7 @@ import {
   roundNumber,
 } from './resultsComputation';
 
-type GridIntensityArg = number | { value: string };
+type GridIntensityArg = number;
 
 export type CO2jsOptions = {
   greenHostingFactor: number;
@@ -250,7 +250,7 @@ function convertToGridIntensityArg(
     return gridIntensity;
   }
   if (gridIntensity && typeof gridIntensity === 'object') {
-    return { value: gridIntensity.alpha3 };
+    return gridIntensity.gridIntensity;
   }
   return null;
 }
