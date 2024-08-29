@@ -76,17 +76,17 @@ export async function processDomainStats(
   const pieChartDataUnsorted: PieChartDatumBase[] = [];
   let transferSizeTotalBytes = 0;
   for (const [domain, stats] of Object.entries(domainStats)) {
-    const co2eDomain = swd.perByteTrace(
+    let co2eDomain = swd.perByteTrace(
       stats['transferSize'],
       undefined,
       co2jsOptions,
     ).co2;
-    if (typeof co2eDomain === 'number') {
-      throw new Error(`co2eDomain is not an object for ${domain}`);
+    if (typeof co2eDomain !== 'number') {
+      co2eDomain = co2eDomain.total;
     }
     pieChartDataUnsorted.push({
       id: domain,
-      value: roundNumber(co2eDomain.total, 2),
+      value: roundNumber(co2eDomain, 2),
     });
     transferSizeTotalBytes += stats['transferSize'];
   }
