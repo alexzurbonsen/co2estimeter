@@ -34,9 +34,9 @@ export function SegmentGridIntensityConfig({
   );
   const [isValidInput, setIsValidInput] = useState(true);
   const [inputValue, setInputValue] = useState<string | undefined>('');
-  const [validatedInputValue, setValidatedInputValue] = useState<string | undefined>(
-    '',
-  );
+  const [validatedInputValue, setValidatedInputValue] = useState<
+    string | undefined
+  >('');
 
   // debounced update of segementGridIntensity
   // value is either null or an object of type CountryCode
@@ -69,18 +69,16 @@ export function SegmentGridIntensityConfig({
           if (countryCode) {
             setSegmentGridIntensity(countryCode);
             return;
-          } else {
-            console.error(
-              `Unexpectedly got a NaN number from a validated inputValue: ${label} and string inputValue: ${value}`,
-            );
-            return;
           }
+          console.error(
+            `Unexpectedly got a NaN number from a validated inputValue: ${label} and string inputValue: ${value}`,
+          );
+          return;
         }
         setSegmentGridIntensity(parsedNumber);
         return;
       }
       setSegmentGridIntensity(null);
-      return;
     }, SET_CONFIG_DEBOUNCE_INTERVAL);
     return () => clearTimeout(timeoutId);
   }, [value, validatedInputValue, setSegmentGridIntensity]);
@@ -119,14 +117,12 @@ export function SegmentGridIntensityConfig({
     const validNumberString = validNumberRegex.test(newValue);
     if (validNumberString) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   };
 
   return (
     <>
-      {/* <Grid item xs={12}>{`value: ${value}, validated inputValue ${validInputValue}, gridIntensity ${segementGridIntensity}`}</Grid> */}
       <Grid item xs={3}>
         <Box sx={{ display: 'flex', alignItems: 'flex-start', height: '100%' }}>
           <Typography variant="body2" sx={{ marginTop: 2 }}>
@@ -140,6 +136,7 @@ export function SegmentGridIntensityConfig({
           options={COUNTRY_CODE_OPTIONS}
           autoHighlight
           freeSolo
+          size="small"
           getOptionLabel={(option) => {
             if (typeof option === 'string') {
               return option;

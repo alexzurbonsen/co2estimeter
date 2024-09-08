@@ -38,7 +38,7 @@ export function MainPanel({
   aboutVisible,
   pieChartCutoff,
   setPieChartCutoff,
-  configGreenHostingFactor: configGreenHostingFactor,
+  configGreenHostingFactor,
   setConfigGreenHostingFactor,
   configDeviceGridIntensity,
   setConfigDeviceGridIntensity,

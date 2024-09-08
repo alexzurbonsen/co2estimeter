@@ -286,7 +286,7 @@ export interface CountryCode {
 // "OECD":341.19,
 // "WORLD":481.45,
 
-export const COUNTRY_CODE_OPTIONS: readonly CountryCode[] = [
+export const COUNTRY_CODE_OPTIONS: ReadonlyArray<CountryCode> = [
   { alpha3: 'AFG', country: 'Afghanistan', gridIntensity: 132.53 },
   { alpha3: 'ALB', country: 'Albania', gridIntensity: 24.29 },
   { alpha3: 'DZA', country: 'Algeria', gridIntensity: 634.61 },

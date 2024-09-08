@@ -10,7 +10,7 @@ import { ComputedDatum, PieTooltipProps, ResponsivePie } from '@nivo/pie';
 import { PieChartDatum } from './resultsComputation';
 
 interface PieChartProps {
-  data: PieChartDatum[];
+  data: Array<PieChartDatum>;
 }
 
 export function CO2EmissionsPieChart({ data }: PieChartProps) {
