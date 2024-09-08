@@ -23,16 +23,16 @@ export function MethodologyTab() {
           <strong>Sustainable Webdesign Model v4</strong>
         </Link>{' '}
         (SWD) to calculate the CO<sub>2</sub>e value of green house gas
-        emissions associated with browsing activity. For the actual caluclation{' '}
-        the{' '}
+        emissions associated with browsing activity. For the calculations it
+        uses the{' '}
         <Link href="https://developers.thegreenwebfoundation.org/co2js/overview/">
           co2.js library
         </Link>{' '}
         from the{' '}
         <Link href="https://www.thegreenwebfoundation.org/">
           Green Web Foundation
-        </Link>{' '}
-        is used.
+        </Link>
+        .
         <br />
         How does the SWD model work? This following section provides a short
         summary. The full picture can be found{' '}

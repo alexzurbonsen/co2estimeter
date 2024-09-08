@@ -20,6 +20,7 @@ export function Popup() {
     null,
   );
   const [reset, setReset] = useState(false);
+  const [disableReset, setDisableReset] = useState(true);
   const [configPieChartCutoff, setConfigPieChartCutoff] = useState(10);
   const [configGreenHostingInitialized, setConfigGreenHostingInitialized] =
     useState(false);
@@ -135,12 +136,14 @@ export function Popup() {
             monitoringActive={monitoringActive ?? false}
             setMonitoringActive={setMonitoringActive}
             setReset={setReset}
+            disableReset={disableReset}
           />
           <Paper elevation={2} sx={{ borderRadius: '14px' }}>
             <MainPanel
               monitoringActive={monitoringActive}
               reset={reset}
               setReset={setReset}
+              setDisableReset={setDisableReset}
               aboutVisible={aboutVisible}
               pieChartCutoff={configPieChartCutoff}
               setPieChartCutoff={setConfigPieChartCutoff}

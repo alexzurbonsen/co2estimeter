@@ -14,16 +14,32 @@ export const theme = createTheme({
   },
   typography: {
     fontFamily: 'Montserrat',
-    // [
-    //   'Montserrat',
-    // ].join(','),
+  },
+  components: {
+    MuiTypography: {
+      styleOverrides: {
+        root: {
+          cursor: 'default',
+        },
+      },
+    },
+    MuiTooltip: {
+      defaultProps: {
+        enterDelay: 500,
+        leaveDelay: 200,
+      },
+      styleOverrides: {
+        tooltip: {
+          cursor: 'default',
+        },
+      },
+    },
+    MuiLink: {
+      styleOverrides: {
+        root: {
+          cursor: 'pointer',
+        },
+      },
+    },
   },
 });
-
-// bottom color of background: BCF254
-
-// green from pie chart: B2FA53
-
-// dark green: 114232
-
-// dark blue 1: 08085E

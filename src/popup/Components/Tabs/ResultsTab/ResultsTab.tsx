@@ -44,6 +44,7 @@ interface ResultsTabProps {
   networkGridIntensity: GridIntensityInput | null;
   reset: boolean;
   setReset: (value: boolean) => void;
+  setDisableReset: (value: boolean) => void;
   monitoringActive: boolean | null;
 }
 
@@ -76,6 +77,7 @@ export function ResultsTab({
   networkGridIntensity,
   reset,
   setReset,
+  setDisableReset,
   monitoringActive,
 }: ResultsTabProps) {
   const [pieChartData, setPieChartData] = useState<Array<PieChartDatum>>([]);
@@ -98,7 +100,7 @@ export function ResultsTab({
       }
 
       const co2jsOptions: CO2jsOptions = {
-        greenHostingFactor: greenHostingFactor,
+        greenHostingFactor,
         gridIntensities: {
           device: convertToGridIntensityArg(deviceGridIntensity),
           dataCenter: convertToGridIntensityArg(dataCenterGridIntensity),
@@ -124,6 +126,7 @@ export function ResultsTab({
       // setComparisonChocolate(comparisonChocolate);
       setComparisonCoffee(comparisonCoffee);
       setComparisonDistance(comparisonDistance);
+      setDisableReset(transferSizeTotalMB === 0);
     };
 
     const resetData = () => {
@@ -138,9 +141,10 @@ export function ResultsTab({
       // setting reset to false does not trigger an immediate re-computation
       //  because domainStats is undefined at this point
       setReset(false);
+      setDisableReset(true);
     };
 
-    reset === true ? resetData() : fetchAndProcessData();
+    reset ? resetData() : fetchAndProcessData();
     const interval = setInterval(() => {
       fetchAndProcessData();
     }, RE_FETCH_INTERVAL);

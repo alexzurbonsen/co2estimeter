@@ -7,7 +7,7 @@ import { MessengerBackgroundScript } from '../message/messages';
 import { StorageBuffer } from '../storage/storageBuffer';
 
 export class MessageHandlerBackground {
-  ports: Browser.Runtime.Port[];
+  ports: Array<Browser.Runtime.Port>;
   transferSizeStorage: StorageBuffer;
 
   constructor(transferSizeStorage: StorageBuffer) {

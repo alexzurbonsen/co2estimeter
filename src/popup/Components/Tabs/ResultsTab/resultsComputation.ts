@@ -18,7 +18,7 @@ export type PieChartDatum = PieChartDatumBase & {
 };
 
 export type ProcessedStats = {
-  pieChartData: PieChartDatum[];
+  pieChartData: Array<PieChartDatum>;
   transferSizeTotalMB: number;
   totalEnergykWh: number;
   co2eTotalGrams: number;
@@ -73,7 +73,7 @@ export async function processDomainStats(
 ): Promise<ProcessedStats> {
   const swd = new co2({ model: 'swd', version: 4, results: 'segment' });
 
-  const pieChartDataUnsorted: PieChartDatumBase[] = [];
+  const pieChartDataUnsorted: Array<PieChartDatumBase> = [];
   let transferSizeTotalBytes = 0;
   for (const [domain, stats] of Object.entries(domainStats)) {
     let co2eDomain = swd.perByteTrace(
@@ -146,9 +146,9 @@ export async function processDomainStats(
 }
 
 function getSortedDataWithColors(
-  pieChartData: PieChartDatumBase[],
+  pieChartData: Array<PieChartDatumBase>,
   pieChartCutoff: number,
-): PieChartDatum[] {
+): Array<PieChartDatum> {
   const sortedData = pieChartData.sort((a, b) => b.value - a.value); // sort in ascending order
   if (sortedData.length > pieChartCutoff) {
     const other = sortedData.slice(pieChartCutoff);
