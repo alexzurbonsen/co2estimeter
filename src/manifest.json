@@ -1,26 +1,31 @@
 {
   "name": "CO2estimeter",
-
   // overriden by webpack with package.json value
-  "version": "0.1",
-
+  "version": "1.0.0",
   "manifest_version": 3,
-
-  "permissions": ["tabs", "storage"],
-
+  "permissions": [
+    "tabs",
+    "storage"
+  ],
+  "icons": {
+    "48": "assets/dot_icon.png"
+  },
   // sets an add-on ID
-  "browser_specific_settings": {
+  "__firefox__browser_specific_settings": {
     // gecko = Firefox
     "gecko": {
-      "id": "alexander.zur.bonsen@tngtech.com",
+      "id": "co2estimeter@webextension",
       "strict_min_version": "112.0"
     }
   },
-
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["js/content.bundle.js"],
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "js/content.bundle.js"
+      ],
       "world": "ISOLATED",
       "run_at": "document_start", // supposedly guarantees a fresh exectution context (no variables left from the previous page)
       "all_frames": true
@@ -29,7 +34,9 @@
     }
   ],
   "background": {
-    "__firefox__scripts": ["js/background.bundle.js"],
+    "__firefox__scripts": [
+      "js/background.bundle.js"
+    ],
     "__chrome__service_worker": "js/background.bundle.js",
     "type": "module"
   },
@@ -37,6 +44,9 @@
     "default_title": "CO2estimeter",
     "default_popup": "popup.html",
     "default_area": "navbar",
-    "default_icon": "assets/dot_icon.png"
+    "default_icon": {
+      "16": "assets/dot_icon.png",
+      "32": "assets/dot_icon.png"
+    }
   }
 }
