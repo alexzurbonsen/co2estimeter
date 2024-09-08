@@ -2,13 +2,13 @@
 
 CO2estimeter is a web extension to estimate the carbon impact of web browsing activity.
 
-<img src=assets/co2estimeter_demo_screenshot.png alt="CO2estimeter Demo" />
+<img src=assets/co2estimeter_demo_screenshot.png alt="CO2estimeter Demo" max-width="400px"/>
 
 ## How to install
 
-CO2estimeter has been tested for Firefox and Chrome. It is not yet available on the official distribution channels of Firefox and Chrome.
+CO2estimeter has been tested for Firefox and Chrome.
 
-But you can install it manually by following the installation instructions for temporary [extension installs in Firefox](https://extensionworkshop.com/documentation/develop/temporary-installation-in-firefox/) or [unpacked extensions in Chrome](https://developer.chrome.com/docs/extensions/get-started/tutorial/hello-world#load-unpacked).
+It is not yet available on the official distribution channels of Firefox and Chrome. But you can install it manually by following the installation instructions for temporary [extension installs in Firefox](https://extensionworkshop.com/documentation/develop/temporary-installation-in-firefox/) or [unpacked extensions in Chrome](https://developer.chrome.com/docs/extensions/get-started/tutorial/hello-world#load-unpacked).
 
 Just download the archive for your browser from [Releases](https://github.com/alexzurbonsen/co2estimeter/releases) and proceed according to the instructions that apply to your browser. If you are installing CO2estimeter for Chrome you need to unpack the archive first.
 
@@ -26,7 +26,7 @@ The artifacts are created in the `extension` directory.
 
 ### How are CO<sub>2</sub>e emissions for browsing activity calculated?
 
-CO2estimeter uses the <strong>[Sustainable Webdesign Model v4](https://sustainablewebdesign.org/estimating-digital-emissions/)</strong> (SWD) to calculate the CO<sub>2</sub>e value of green house gas emissions associated with browsing activity. For the calculations it uses the [co2.js library](https://developers.thegreenwebfoundation.org/co2js/overview/) from the [Green Web Foundation](https://www.thegreenwebfoundation.org).
+CO2estimeter uses the [Sustainable Webdesign Model v4](https://sustainablewebdesign.org/estimating-digital-emissions/) (SWD) to calculate the CO<sub>2</sub>e value of green house gas emissions associated with browsing activity. For the calculations it uses the [co2.js library](https://developers.thegreenwebfoundation.org/co2js/overview/) from the [Green Web Foundation](https://www.thegreenwebfoundation.org).
 
 ### How does the SWD model work?
 
