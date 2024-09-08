@@ -2,7 +2,7 @@
 
 CO2estimeter is a web extension to estimate the carbon impact of web browsing activity.
 
-<img src=assets/co2estimeter_demo_screenshot.png alt="CO2estimeter Demo" max-width="400px"/>
+<img src=assets/co2estimeter_demo_screenshot.png alt="CO2estimeter Demo" width="400px"/>
 
 ## How to install
 
