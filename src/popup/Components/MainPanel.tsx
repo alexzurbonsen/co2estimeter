@@ -5,7 +5,7 @@ import Link from '@mui/material/Link';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import Typography from '@mui/material/Typography';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import text from '../text/text';
 import { TabPanel } from './TabPanel';
@@ -18,6 +18,7 @@ interface MainPanelProps {
   monitoringActive: boolean | null;
   reset: boolean;
   setReset: (value: boolean) => void;
+  setDisableReset: (value: boolean) => void;
   aboutVisible: boolean;
   pieChartCutoff: number;
   setPieChartCutoff: (value: number) => void;
@@ -35,6 +36,7 @@ export function MainPanel({
   monitoringActive,
   reset,
   setReset,
+  setDisableReset,
   aboutVisible,
   pieChartCutoff,
   setPieChartCutoff,
@@ -48,6 +50,13 @@ export function MainPanel({
   setConfigNetworkGridIntensity,
 }: MainPanelProps) {
   const [currentTab, setTab] = useState(0);
+
+  // jump to results tab if reset button is pressed, otherwise the disabled state of the reset button is not recomputed
+  useEffect(() => {
+    if (reset) {
+      setTab(0);
+    }
+  }, [reset]);
 
   const handleTabChange = (
     _event: React.SyntheticEvent,
@@ -76,6 +85,7 @@ export function MainPanel({
             <ResultsTab
               reset={reset}
               setReset={setReset}
+              setDisableReset={setDisableReset}
               monitoringActive={monitoringActive}
               pieChartCutoff={pieChartCutoff}
               greenHostingFactor={configGreenHostingFactor}

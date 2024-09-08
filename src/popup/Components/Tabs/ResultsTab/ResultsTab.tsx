@@ -44,6 +44,7 @@ interface ResultsTabProps {
   networkGridIntensity: GridIntensityInput | null;
   reset: boolean;
   setReset: (value: boolean) => void;
+  setDisableReset: (value: boolean) => void;
   monitoringActive: boolean | null;
 }
 
@@ -76,6 +77,7 @@ export function ResultsTab({
   networkGridIntensity,
   reset,
   setReset,
+  setDisableReset,
   monitoringActive,
 }: ResultsTabProps) {
   const [pieChartData, setPieChartData] = useState<Array<PieChartDatum>>([]);
@@ -124,6 +126,7 @@ export function ResultsTab({
       // setComparisonChocolate(comparisonChocolate);
       setComparisonCoffee(comparisonCoffee);
       setComparisonDistance(comparisonDistance);
+      setDisableReset(transferSizeTotalMB === 0);
     };
 
     const resetData = () => {
@@ -138,6 +141,7 @@ export function ResultsTab({
       // setting reset to false does not trigger an immediate re-computation
       //  because domainStats is undefined at this point
       setReset(false);
+      setDisableReset(true);
     };
 
     reset ? resetData() : fetchAndProcessData();

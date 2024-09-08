@@ -20,6 +20,7 @@ export function Popup() {
     null,
   );
   const [reset, setReset] = useState(false);
+  const [disableReset, setDisableReset] = useState(true);
   const [configPieChartCutoff, setConfigPieChartCutoff] = useState(10);
   const [configGreenHostingInitialized, setConfigGreenHostingInitialized] =
     useState(false);
@@ -100,13 +101,13 @@ export function Popup() {
           await Browser.storage.local.get(STORAGE_KEYS.GRID_INTENSITIES)
         )[STORAGE_KEYS.GRID_INTENSITIES];
         setConfigDeviceGridIntensity(
-          (gridIntensities?.['device']) ?? null,
+          (gridIntensities && gridIntensities['device']) ?? null,
         );
         setConfigDataCenterGridIntensity(
-          (gridIntensities?.['dataCenter']) ?? null,
+          (gridIntensities && gridIntensities['dataCenter']) ?? null,
         );
         setConfigNetworkGridIntensity(
-          (gridIntensities?.['network']) ?? null,
+          (gridIntensities && gridIntensities['network']) ?? null,
         );
         setConfigGridIntensitiesInitialized(true);
       }
@@ -135,12 +136,14 @@ export function Popup() {
             monitoringActive={monitoringActive ?? false}
             setMonitoringActive={setMonitoringActive}
             setReset={setReset}
+            disableReset={disableReset}
           />
           <Paper elevation={2} sx={{ borderRadius: '14px' }}>
             <MainPanel
               monitoringActive={monitoringActive}
               reset={reset}
               setReset={setReset}
+              setDisableReset={setDisableReset}
               aboutVisible={aboutVisible}
               pieChartCutoff={configPieChartCutoff}
               setPieChartCutoff={setConfigPieChartCutoff}

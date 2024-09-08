@@ -18,12 +18,14 @@ interface TopBarProps {
   monitoringActive: boolean;
   setMonitoringActive: (value: boolean) => void;
   setReset: (value: any) => void;
+  disableReset: boolean;
 }
 
 export default function TopBar({
   monitoringActive,
   setMonitoringActive,
   setReset,
+  disableReset,
 }: TopBarProps) {
   const handleDataReset = async () => {
     await Browser.storage.local.remove(STORAGE_KEYS.DOMAIN_STATS);
@@ -68,7 +70,7 @@ export default function TopBar({
           <span>
             <IconButton
               onClick={handleDataReset}
-              disabled={monitoringActive}
+              disabled={monitoringActive || disableReset}
               color="primary"
             >
               <ReplaySharpIcon />
