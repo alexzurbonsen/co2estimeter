@@ -24,6 +24,10 @@ export const theme = createTheme({
       },
     },
     MuiTooltip: {
+      defaultProps: {
+        enterDelay: 500,
+        leaveDelay: 200,
+      },
       styleOverrides: {
         tooltip: {
           cursor: 'default',
