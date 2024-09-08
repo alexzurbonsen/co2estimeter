@@ -34,7 +34,7 @@ export class PageWeight {
       _: PerformanceObserver,
       droppedEntriesCount: number,
     ): void => {
-      const resources = entries.getEntries() as PerformanceResourceTiming[];
+      const resources = entries.getEntries() as Array<PerformanceResourceTiming>;
       resources.forEach((resource) => {
         MessengerContentScript.sendTransferSizeMessage(
           this.port,

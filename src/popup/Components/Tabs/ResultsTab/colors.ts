@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: Alexander zur Bonsen <alexander.zur.bonsen@tngtech.com>
 //
 // SPDX-License-Identifier: Apache-2.0
-export const colors: string[] = [
+export const colors: Array<string> = [
   'hsl(64, 97%, 55%)',
   'hsl(86, 97%, 55%)',
   'hsl(62, 97%, 55%)',

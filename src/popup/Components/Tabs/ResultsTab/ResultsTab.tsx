@@ -98,7 +98,7 @@ export function ResultsTab({
       }
 
       const co2jsOptions: CO2jsOptions = {
-        greenHostingFactor: greenHostingFactor,
+        greenHostingFactor,
         gridIntensities: {
           device: convertToGridIntensityArg(deviceGridIntensity),
           dataCenter: convertToGridIntensityArg(dataCenterGridIntensity),
@@ -140,7 +140,7 @@ export function ResultsTab({
       setReset(false);
     };
 
-    reset === true ? resetData() : fetchAndProcessData();
+    reset ? resetData() : fetchAndProcessData();
     const interval = setInterval(() => {
       fetchAndProcessData();
     }, RE_FETCH_INTERVAL);

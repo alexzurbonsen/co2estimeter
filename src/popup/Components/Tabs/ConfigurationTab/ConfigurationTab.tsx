@@ -64,14 +64,14 @@ export function ConfigurationTab({
 
   const handleGreenHostingSliderChange = (
     _event: Event,
-    newValue: number | number[],
+    newValue: number | Array<number>,
   ) => {
     setIntermediateGreenHostingPercent(newValue as number);
   };
 
   const handlePieChartCutoffSliderChange = (
     _event: Event,
-    newValue: number | number[],
+    newValue: number | Array<number>,
   ) => {
     setIntermediatePieChartCutoff(newValue as number);
   };
