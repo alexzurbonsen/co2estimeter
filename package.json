@@ -17,11 +17,9 @@
   "scripts": {
     "dev:chrome": "webpack --env mode=development --env browser=chrome --watch",
     "dev:firefox": "webpack --env mode=development --env browser=firefox && web-ext run --source-dir extension/firefox --verbose",
-    "dev:opera": "webpack --env mode=development --env browser=opera --watch",
     "build:chrome": "webpack --env mode=production --env browser=chrome",
     "build:firefox": "webpack --env mode=production --env browser=firefox",
-    "build:opera": "webpack --env mode=production --env browser=opera",
-    "build": "pnpm run build:chrome && pnpm run build:firefox && pnpm run build:opera",
+    "build": "pnpm run build:chrome && pnpm run build:firefox",
     "clean": "rm -rf ./extension",
     "copyright-lint-check": "reuse lint",
     "format": "prettier --write --ignore-unknown .",

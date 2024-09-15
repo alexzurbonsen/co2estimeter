@@ -24,19 +24,6 @@ const outputPath = path.join(__dirname, tsConfig.compilerOptions.outDir);
 const description = packageJSON.description;
 const version = packageJSON.version;
 
-// copied from https://github.com/abhijithvijayan/web-extension-starter/blob/react-typescript/webpack.config.js
-const getExtensionFileType = (browser) => {
-  if (browser === 'opera') {
-    return 'crx';
-  }
-
-  if (browser === 'firefox') {
-    return 'xpi';
-  }
-
-  return 'zip';
-};
-
 module.exports = (env) => {
   return {
     mode: env.mode,
@@ -89,10 +76,7 @@ module.exports = (env) => {
       new CleanWebpackPlugin({
         cleanOnceBeforeBuildPatterns: [
           path.join(`${outputPath}`, `${env.browser}`),
-          path.join(
-            `${outputPath}`,
-            `${env.browser}.${getExtensionFileType(env.browser)}`,
-          ),
+          path.join(`${outputPath}`, `${env.browser}.zip`),
         ],
         cleanStaleWebpackAssets: false,
         verbose: true,
@@ -140,7 +124,7 @@ module.exports = (env) => {
                 {
                   format: 'zip',
                   source: path.join(outputPath, env.browser),
-                  destination: `${path.join(outputPath, env.browser)}.${getExtensionFileType(env.browser)}`,
+                  destination: `${path.join(outputPath, env.browser)}.zip`,
                   options: { zlib: { level: 6 } },
                 },
               ],
