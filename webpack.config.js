@@ -124,7 +124,7 @@ module.exports = (env) => {
                 {
                   format: 'zip',
                   source: path.join(outputPath, env.browser),
-                  destination: `${path.join(outputPath, env.browser)}.${getExtensionFileType(env.browser)}`,
+                  destination: `${path.join(outputPath, env.browser)}.zip`,
                   options: { zlib: { level: 6 } },
                 },
               ],
