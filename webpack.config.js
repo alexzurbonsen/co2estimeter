@@ -24,6 +24,10 @@ const outputPath = path.join(__dirname, tsConfig.compilerOptions.outDir);
 const description = packageJSON.description;
 const version = packageJSON.version;
 
+function getZipFileName(browser) {
+  return `${packageJSON.name}_${browser}.zip`;
+}
+
 module.exports = (env) => {
   return {
     mode: env.mode,
@@ -40,7 +44,7 @@ module.exports = (env) => {
       path: path.join(outputPath, env.browser),
       filename: 'js/[name].bundle.js',
     },
-    // TODO I saw exapmles were node modules were excluded, need to understand why
+    // TODO I saw examples were node modules were excluded, need to understand why
     module: {
       rules: [
         // all files with a `.ts`, `.cts`, `.mts` or `.tsx` extension will be handled by `ts-loader`
@@ -76,7 +80,7 @@ module.exports = (env) => {
       new CleanWebpackPlugin({
         cleanOnceBeforeBuildPatterns: [
           path.join(`${outputPath}`, `${env.browser}`),
-          path.join(`${outputPath}`, `${env.browser}.zip`),
+          path.join(`${outputPath}`, `${getZipFileName(env.browser)}`),
         ],
         cleanStaleWebpackAssets: false,
         verbose: true,
@@ -124,7 +128,7 @@ module.exports = (env) => {
                 {
                   format: 'zip',
                   source: path.join(outputPath, env.browser),
-                  destination: `${path.join(outputPath, env.browser)}.zip`,
+                  destination: `${path.join(outputPath, getZipFileName(env.browser))}`,
                   options: { zlib: { level: 6 } },
                 },
               ],
