@@ -12,7 +12,7 @@ async function main() {
       STORAGE_KEYS.MONITORING_ACTIVE
     ] ?? false;
 
-  const pageWeight = new PageWeight({ debug: true });
+  const pageWeight = new PageWeight({ debug: false });
   // @ts-ignore ts(2345)
   const pageWeightObserver = new PerformanceObserver(
     pageWeight.getObserverCallback(),
@@ -36,7 +36,7 @@ async function main() {
           pageWeightObserver.observe({
             entryTypes: ['resource', 'navigation'],
           });
-          console.log(`| ${LOGGER_PREFIX} | monitoring active`);
+          // console.log(`| ${LOGGER_PREFIX} | monitoring active`);
           handlePageLifecycle(pageWeightObserver, pageWeight);
         } else {
           pageWeightObserver.disconnect();
