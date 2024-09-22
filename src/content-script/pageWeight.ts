@@ -34,7 +34,8 @@ export class PageWeight {
       _: PerformanceObserver,
       droppedEntriesCount: number,
     ): void => {
-      const resources = entries.getEntries() as Array<PerformanceResourceTiming>;
+      const resources =
+        entries.getEntries() as Array<PerformanceResourceTiming>;
       resources.forEach((resource) => {
         MessengerContentScript.sendTransferSizeMessage(
           this.port,
@@ -52,7 +53,7 @@ export class PageWeight {
       });
       if (droppedEntriesCount > 0) {
         console.warn(
-          `TRANSFER_SIZE_OBSERVER: ${droppedEntriesCount} entries were dropped because the buffer was full.`,
+          `| ${LOGGER_PREFIX} | TRANSFER_SIZE_OBSERVER: ${droppedEntriesCount} entries were dropped because the buffer was full.`,
         );
       }
     };

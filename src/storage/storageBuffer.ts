@@ -3,6 +3,8 @@
 // SPDX-License-Identifier: Apache-2.0
 import Browser from 'webextension-polyfill';
 
+import { LOGGER_PREFIX } from '../constants/constants';
+
 // browser.strorage API is similar to Window.localStorage, but at least Firefox clears data
 // stored by extensions using the localStorage API in various scenarios where users clear
 // their browsing history and data for privacy reasons. Data saved using the storage.local API
@@ -20,12 +22,14 @@ export class StorageBuffer {
   dataLabel: keyof DataLabels;
   buffer: Record<string, number>;
   lock: boolean;
+  debug: boolean;
 
-  constructor(storageKey: string, dataLabel: keyof DataLabels) {
+  constructor(storageKey: string, dataLabel: keyof DataLabels, debug = false) {
     this.dataLabel = dataLabel;
     this.storageKey = storageKey;
     this.buffer = {};
     this.lock = false;
+    this.debug = debug;
   }
 
   // adding data is atomic (synchronous), thus no need to check the lock
@@ -53,7 +57,9 @@ export class StorageBuffer {
 
   async _flushBuffer(dataToStore: Record<string, number>) {
     if (Object.keys(dataToStore).length === 0) {
-      console.log('Skipping. No data to store.');
+      if (this.debug) {
+        console.log(`| ${LOGGER_PREFIX} | Skipping. No data to store.`);
+      }
       return;
     }
     const dataFromStorage =
@@ -65,7 +71,9 @@ export class StorageBuffer {
         dataFromStorage[key] = { [this.dataLabel]: dataToStore[key] };
       }
     }
-    console.log('Data to store:', dataFromStorage);
+    if (this.debug) {
+      console.log(`| ${LOGGER_PREFIX} | Data to store: `, dataFromStorage);
+    }
     await Browser.storage.local.set({ [this.storageKey]: dataFromStorage });
   }
 }
