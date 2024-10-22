@@ -30,3 +30,12 @@ Add the following entry to your `settings.json` to tell VS Code that comments ar
   }
 }
 ```
+
+### Creating a release
+
+When all PRs are merged:
+1. adjust package.json version (and merge)
+2. create tag, e.g. `sl push --to tags/v1.0.3`
+3. build the extension
+4. create release on GH with the tag, upload build artifacts
+5. submit on Mozilla Add On platform via dev account (https://addons.mozilla.org/de/developers/addon/co2estimeter/edit)
