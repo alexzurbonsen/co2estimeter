@@ -28,7 +28,6 @@
     "lint-check": "eslint -c .eslintrc.js \"src\" --ext .ts,.tsx",
     "lint-extension:chrome": "web-ext --source-dir extension/chrome lint",
     "lint-extension:firefox": "web-ext --source-dir extension/firefox lint",
-    "lint-extension:opera": "web-ext --source-dir extension/opera lint",
     "precommit": "pnpm format && pnpm lint-check && pnpm typecheck",
     "typecheck": "tsc -p ./ --noEmit"
   },
