@@ -37,11 +37,7 @@ module.exports = (env) => {
     entry: {
       background: path.join(sourcePath, 'background-script', 'main.ts'),
       content: path.join(sourcePath, 'content-script', 'main.ts'),
-      popup: {
-        import: path.join(sourcePath, 'popup', 'index.tsx'),
-        dependOn: ['nivo'],
-      },
-      nivo: ['@nivo/pie'], // to submit to Mozilla Add Ons, the size limit for a single file is 4 MB, splitting nivo to reduce popup bundle size
+      popup: path.join(sourcePath, 'popup', 'index.tsx'),
     },
     output: {
       path: path.join(outputPath, env.browser),
@@ -103,6 +99,11 @@ module.exports = (env) => {
 
     // mostly copied from https://github.com/abhijithvijayan/web-extension-starter/blob/react-typescript/webpack.config.js
     optimization: {
+      splitChunks: {
+        chunks: 'all',
+        maxSize: 1500000, // Mozilla Add On platform allows for file size of max. 4MB, this combination gave me chunks within size limits (note that maxSize is a hint, not a guarantee, see https://webpack.js.org/plugins/split-chunks-plugin/#splitchunksmaxsize)
+        minSize: 500000,
+      },
       minimize: true,
       minimizer: [
         new TerserPlugin({
