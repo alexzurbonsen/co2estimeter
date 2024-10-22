@@ -37,8 +37,11 @@ module.exports = (env) => {
     entry: {
       background: path.join(sourcePath, 'background-script', 'main.ts'),
       content: path.join(sourcePath, 'content-script', 'main.ts'),
-      popup: path.join(sourcePath, 'popup', 'index.tsx'),
-      // options: path.join(sourcePath, 'options', 'index.tsx'),
+      popup: {
+        import: path.join(sourcePath, 'popup', 'index.tsx'),
+        dependOn: ['nivo'],
+      },
+      nivo: ['@nivo/pie'], // to submit to Mozilla Add Ons, the size limit for a single file is 4 MB, splitting nivo to reduce popup bundle size
     },
     output: {
       path: path.join(outputPath, env.browser),
