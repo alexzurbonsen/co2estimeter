@@ -46,17 +46,17 @@ export function MethodologyTab() {
         .
         <br />
         There are many variables along the path of the packets you requested to
-        load a webpage that contribute to energy consumption you the page load.
-        Taking into a account all these variables to get an estimate of the
-        involved emissions, is unfeasible, may be also impossible. The SWD model
-        thus breaks down this complexity by focussing on the number of bytes
-        that are transferred over the wire (and air) to your device. The model
-        uses data on the average energy consumption of three segments of the
-        internet, data centers, network and user devices, to provide estimates
-        for the average energy consumption per transferred byte. With these
-        values it computes the estimated energy that is necessary to get, send
-        and process the bytes to your device. Finally, the energy values are
-        multiplied by the grid carbon intensity to get an green house gas
+        load a webpage that contribute to the energy consumption of the page
+        load. Taking into a account all these variables to get an estimate of
+        the involved emissions, is unfeasible, may be also impossible. The SWD
+        model thus breaks down this complexity by focussing on the number of
+        bytes that are transferred over the wire (and air) to your device. The
+        model uses data on the average energy consumption of three segments of
+        the internet, data centers, network and user devices, to provide
+        estimates for the average energy consumption per transferred byte. With
+        these values it computes the estimated energy that is necessary to get,
+        send and process the bytes to your device. Finally, the energy values
+        are multiplied by the grid carbon intensity to get an green house gas
         emissions estimate in CO
         <sub>2</sub>e. The grid carbon intensity is the amount of CO<sub>2</sub>
         e emitted per kWh of electricity produced.
@@ -79,7 +79,7 @@ export function MethodologyTab() {
         <br />
         Of course, the approach has limitations. It does not take into account
         the energy consumption of the server that processes your request for
-        example. Taken to an extreme, if your request causes a server work to do
+        example. Taken to an extreme, if your request causes a server to do
         some heavy work for a whole day but it only sends back a short message
         once it is finished, the estimated energy consumption of your request
         would just reflect the length of the short message, not the work the
