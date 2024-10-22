@@ -35,7 +35,7 @@ CO2estimeter uses the [Sustainable Webdesign Model v4](https://sustainablewebdes
 The following section provides a short summary. The full picture can be found [here](https://sustainablewebdesign.org/estimating-digital-emissions).
 
 There are many variables along the path of the packets you requested to
-load a webpage that contribute to energy consumption you the page load.
+load a webpage that contribute to the energy consumption of the page load.
 Taking into a account all these variables to get an estimate of the
 involved emissions, is unfeasible, may be also impossible. The SWD model
 thus breaks down this complexity by focussing on the number of bytes
@@ -60,7 +60,7 @@ zero-carbon energy.
 
 Of course, the approach has limitations. It does not take into account
 the energy consumption of the server that processes your request for
-example. Taken to an extreme, if your request causes a server work to do
+example. Taken to an extreme, if your request causes a server to do
 some heavy work for a whole day but it only sends back a short message
 once it is finished, the estimated energy consumption of your request
 would just reflect the length of the short message, not the work the
