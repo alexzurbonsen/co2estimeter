@@ -1,7 +1,6 @@
 {
   "name": "CO2estimeter",
   // overriden by webpack with package.json value
-  "version": "1.0.0",
   "manifest_version": 3,
   "permissions": [
     "tabs",
