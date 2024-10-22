@@ -1,6 +1,6 @@
 {
   "name": "co2estimeter",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Web extension for estimating the CO2 emissions of browsing activity",
   "private": true,
   "repository": "",
