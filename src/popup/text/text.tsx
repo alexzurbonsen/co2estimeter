@@ -26,10 +26,11 @@ const text = {
       </span>
     ),
     fallbackNeverStarted: (
-      <span>
-        No data available yet.
+      <span style={{ color: '#08085E' }}>
+        PAUSED.
         <br />
-        Press the Play button to start monitoring.
+        <br />
+        Press Play to start monitoring.
       </span>
     ),
     time: 'Duration',
