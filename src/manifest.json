@@ -2,10 +2,7 @@
   "name": "CO2estimeter",
   // overriden by webpack with package.json value
   "manifest_version": 3,
-  "permissions": [
-    "tabs",
-    "storage"
-  ],
+  "permissions": ["tabs", "storage"],
   "icons": {
     "48": "assets/dot_icon.png"
   },
@@ -19,12 +16,8 @@
   },
   "content_scripts": [
     {
-      "matches": [
-        "<all_urls>"
-      ],
-      "js": [
-        "js/content.bundle.js"
-      ],
+      "matches": ["<all_urls>"],
+      "js": ["js/content.bundle.js"],
       "world": "ISOLATED",
       "run_at": "document_start", // supposedly guarantees a fresh exectution context (no variables left from the previous page)
       "all_frames": true
@@ -33,9 +26,7 @@
     }
   ],
   "background": {
-    "__firefox__scripts": [
-      "js/background.bundle.js"
-    ],
+    "__firefox__scripts": ["js/background.bundle.js"],
     "__chrome__service_worker": "js/background.bundle.js",
     "type": "module"
   },
