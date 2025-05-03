@@ -101,13 +101,13 @@ export function Popup() {
           await Browser.storage.local.get(STORAGE_KEYS.GRID_INTENSITIES)
         )[STORAGE_KEYS.GRID_INTENSITIES];
         setConfigDeviceGridIntensity(
-          (gridIntensities && gridIntensities['device']) ?? null,
+          (gridIntensities?.['device']) ?? null,
         );
         setConfigDataCenterGridIntensity(
-          (gridIntensities && gridIntensities['dataCenter']) ?? null,
+          (gridIntensities?.['dataCenter']) ?? null,
         );
         setConfigNetworkGridIntensity(
-          (gridIntensities && gridIntensities['network']) ?? null,
+          (gridIntensities?.['network']) ?? null,
         );
         setConfigGridIntensitiesInitialized(true);
       }

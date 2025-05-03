@@ -74,7 +74,7 @@ browsers. It can continuously observe network requests and provide
 performance data about them. This also includes the so called
 [transfer size](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/transferSize). That is the size of the response as it is sent over the network to your device (as opposed to the decoded or decompressed size of the resource).
 
-It is zero if the data was obtained from local cache or a CORS request.
+It is zero if the data was obtained from local cache or a cross-origin request.
 The size of requests is not tracked. If you are looking for an overview
 of how the Performance API can be used, check out [this blog](https://fershad.com/writing/including-user-interaction-in-website-carbon-estimates/) or [Mozilla's docs](https://developer.mozilla.org/en-US/docs/Web/API/Performance).
 CO2estimeter collects this transfer sizes for all requests from a browser
