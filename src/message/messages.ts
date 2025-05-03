@@ -56,10 +56,9 @@ function validateMessage(
     !('c' in message)
   ) {
     return false;
-  } 
-    if (message.t === type && typeof message.c === contentType) {
-      return true;
-    }
-    return false;
-  
+  }
+  if (message.t === type && typeof message.c === contentType) {
+    return true;
+  }
+  return false;
 }

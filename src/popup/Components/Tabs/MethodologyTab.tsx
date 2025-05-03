@@ -79,12 +79,12 @@ export function MethodologyTab() {
         <br />
         Of course, the approach has limitations. It does not take into account
         the energy consumption of the server that processes your request for
-        example. Taken to an extreme, if your request causes a server to do
-        some heavy work for a whole day but it only sends back a short message
-        once it is finished, the estimated energy consumption of your request
-        would just reflect the length of the short message, not the work the
-        server has done. Also the distance that the requested data has covered
-        on the way to your device does not have an effect on the estimates.
+        example. Taken to an extreme, if your request causes a server to do some
+        heavy work for a whole day but it only sends back a short message once
+        it is finished, the estimated energy consumption of your request would
+        just reflect the length of the short message, not the work the server
+        has done. Also the distance that the requested data has covered on the
+        way to your device does not have an effect on the estimates.
       </Typography>
       <Typography variant="h6" sx={{ marginTop: 2 }}>
         How does {text.name} collect the necessary data and store it?
@@ -112,8 +112,11 @@ export function MethodologyTab() {
             'https://fershad.com/writing/including-user-interaction-in-website-carbon-estimates/'
           }
         >
-          this blog or Mozilla's docs{' '}
-          <Link href="https://developer.mozilla.org/en-US/docs/Web/API/Performance"></Link>
+          this blog
+        </Link>{' '}
+        or{' '}
+        <Link href="https://developer.mozilla.org/en-US/docs/Web/API/Performance">
+          Mozilla's docs
         </Link>
         .
         <br />
